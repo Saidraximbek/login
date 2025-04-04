@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth } from "../firebase/config";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useGlobalContext } from "./useGlobalContext";
 import toast from "react-hot-toast";
 
@@ -12,7 +12,7 @@ export const useLogin = () => {
   const register = async (email, password, displayName) => {
     try {
       setIsPending(true);
-      const req = await createUserWithEmailAndPassword(auth, email, password);
+      const req = await signInWithEmailAndPassword(auth, email, password);
       const user = req.user;
       await updateProfile(auth.currentUser, {
         displayName,
