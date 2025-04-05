@@ -10,8 +10,8 @@ function Navbar() {
     <header className="bg-base-200">
       <div className="navbar main-container">
         <div className="navbar-start">
-          <Link className="btn btn-netural" to="/">
-            Logo
+          <Link className="btn btn-netural border-0" to="/">
+            <img src="./logo.png" alt="" width={75}/>
           </Link>
         </div>
         <div className="navbar-center">

@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <>
       <Navbar />
-      <main className="main-container flex gap-[50px] mt-10 w-[100%]">
+      <main className="main-container flex gap-[50px] mt-10 w-[100%] max-md:flex-col-reverse">
         <Outlet />
         <OnlineUsers />
       </main>
