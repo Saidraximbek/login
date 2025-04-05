@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useGlobalContext } from "./useGlobalContext";
 import toast from "react-hot-toast";
-
+import { doc, setDoc } from "firebase/firestore";
 export const useRegister = () => {
   const { dispatch } = useGlobalContext();
   const [isPending, setIsPending] = useState(false);
   const [data, setData] = useState(null);
-
+  
   const register = async (displayName, email, password) => {
     try {
       setIsPending(true);
@@ -19,6 +19,11 @@ export const useRegister = () => {
 `,
       });
       const user = req.user;
+      await setDoc(doc(db, "users", user.uid), {
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        online: true
+      })
       toast.success(`Qalesan, ${user.displayName}`);
 
       dispatch({ type: "LOGIN", payload: user });

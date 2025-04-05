@@ -6,6 +6,7 @@
   body,
   #root {
     height: 100%;
+    width: 100%;
   }
 
   #root {
@@ -21,6 +22,6 @@
   }
 
   .main-container {
-    @apply max-w-5xl mx-auto;
+    @apply  max-w-[1150px] mx-auto w-full;
   }
 }

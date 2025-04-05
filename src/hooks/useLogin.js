@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useGlobalContext } from "./useGlobalContext";
 import toast from "react-hot-toast";
-
+import { doc, updateDoc } from "firebase/firestore"
 export const useLogin = () => {
   const { dispatch } = useGlobalContext();
   const [isPending, setIsPending] = useState(false);
@@ -14,6 +14,10 @@ export const useLogin = () => {
       setIsPending(true);
       const req = await signInWithEmailAndPassword(auth, email, password);
       const user = req.user;
+      const userRef = doc(db, "users", user.uid)
+      await updateDoc(userRef, {
+          online: true
+      })
       await updateProfile(auth.currentUser, {
         displayName,
         photoURL: `https://api.dicebear.com/9.x/open-peeps/svg?seed=${displayName}
