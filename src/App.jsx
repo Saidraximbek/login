@@ -12,6 +12,7 @@ import { useGlobalContext } from "./hooks/useGlobalContext";
 import { useEffect } from "react";
 import { auth } from "./firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
+import CreatedRecepies from "./components/CreatedRecepies";
 
 function App() {
   const { user, dispatch, isAuthReady } = useGlobalContext();
@@ -32,6 +33,10 @@ function App() {
         {
           path: "/create",
           element: <Create />,
+        },
+        {
+          path: "/createdRecepies",
+          element: <CreatedRecepies />,
         },
       ],
     },

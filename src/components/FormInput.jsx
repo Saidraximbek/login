@@ -3,14 +3,17 @@ import React from "react";
 function FormInput({ name, type, label }) {
   return (
     <fieldset className="fieldset">
-      <legend className="fieldset-legend text-white md:text-black">
+      {/* <legend className="fieldset-legend text-white md:text-black">
         {label}
-      </legend>
+      </legend> */}
       <input
         type={type}
-        className="input w-full"
+        className="border border-gray-300 px-4 py-2 rounded-lg shadow-sm h-[40px] text-[16px] 
+             transition-all duration-300 ease-in-out 
+             transform focus:scale-105 focus:shadow-xl 
+             focus:border-blue-500 focus:outline-none"
         name={name}
-        placeholder="Type here"
+        placeholder={label}
         required
       />
     </fieldset>

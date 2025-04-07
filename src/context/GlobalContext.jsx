@@ -1,4 +1,4 @@
-import { useReducer, useContext, createContext } from "react";
+import { useReducer, useContext, createContext, useState } from "react";
 
 export const GLobalContext = createContext();
 
@@ -23,6 +23,7 @@ const reducer = (state, action) => {
 
 export const GLobalCOntextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, InitolState);
+
   return (
     <GLobalContext.Provider value={{ ...state, dispatch }}>
       {children}
