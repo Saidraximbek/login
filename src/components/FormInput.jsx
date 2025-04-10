@@ -2,7 +2,7 @@ import React from "react";
 
 function FormInput({ name, type, label }) {
   return (
-    <fieldset className="fieldset">
+    <fieldset className="fieldset w-full">
       {/* <legend className="fieldset-legend text-white md:text-black">
         {label}
       </legend> */}

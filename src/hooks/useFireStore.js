@@ -2,6 +2,7 @@ import { addDoc, collection, doc, updateDoc, deleteDoc } from "firebase/firestor
 import { useEffect, useState } from "react";
 import { useReducer } from "react";
 import toast from "react-hot-toast";
+import { db } from "../firebase/config";
 
 const initialState = {
   isPending: false,
@@ -32,7 +33,7 @@ export const useFirebase = (c) => {
       dispatch(action);
     }
   };
-  const addDocument = async () => {
+  const addDocument = async (data) => {
     try {
       checkCanceled({ type: "IS_PENDING", payload: true });
       const res = await addDoc(collection(db, c), data);
@@ -41,6 +42,9 @@ export const useFirebase = (c) => {
     } catch (error) {
       checkCanceled({ type: "ERROR", payload: error.message });
       toast.error(error.message);
+
+      console.log(error.message);
+      
     } finally {
       checkCanceled({ type: "IS_PENDING", payload: false });
     }

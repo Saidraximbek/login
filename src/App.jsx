@@ -1,7 +1,10 @@
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import ProtectedROutest from "./components/ProtectedROutest";
 import MainLayout from "./layouts/MainLayout";
-
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,6 +16,7 @@ import { useEffect } from "react";
 import { auth } from "./firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import CreatedRecepies from "./components/CreatedRecepies";
+import FoodDimlama from "./pages/FoodDimlama";
 
 function App() {
   const { user, dispatch, isAuthReady } = useGlobalContext();
@@ -38,6 +42,10 @@ function App() {
           path: "/createdRecepies",
           element: <CreatedRecepies />,
         },
+        {
+          path: "/FoodDimlama",
+          element: <FoodDimlama />,
+        },
       ],
     },
     {
@@ -58,7 +66,7 @@ function App() {
       dispatch({ type: "AUTH_READY" });
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   return <>{isAuthReady && <RouterProvider router={routes} />}</>;

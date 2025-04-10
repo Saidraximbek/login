@@ -1,6 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { MdOutlineAddBusiness, MdOutlineBookmarkAdded } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
 const Sitebar = () => {
@@ -18,18 +18,36 @@ const Sitebar = () => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Link to="/" className="sitebar-hover flex items-center gap-2">
-          <IoHomeOutline /> Bosh Sahifa
-        </Link>
-        <Link to="/create" className="sitebar-hover flex items-center gap-2">
-          <MdOutlineAddBusiness /> Retsept qo'shish
-        </Link>
-        <Link
-          to="/createdRecepies"
-          className="sitebar-hover flex items-center gap-2"
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
         >
-          <MdOutlineBookmarkAdded /> Qo'shilgan retseptlar
-        </Link>
+          <div className="sitebar-hover flex items-center gap-2">
+            <IoHomeOutline /> Bosh Sahifa
+          </div>
+        </NavLink>
+        <NavLink
+          to="/create"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+        >
+          <div className="sitebar-hover flex items-center gap-2">
+            <MdOutlineAddBusiness /> Retsept qo'shish
+          </div>
+        </NavLink>
+        <NavLink
+          to="/createdRecepies"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+        >
+          <div className="sitebar-hover flex items-center gap-2">
+            <MdOutlineBookmarkAdded /> Qo'shilgan retseptlar
+          </div>
+        </NavLink>
       </div>
     </div>
   );

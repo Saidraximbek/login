@@ -2,39 +2,49 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCollaction } from "../hooks/useCollaction";
-
+import { Link } from "react-router-dom";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 function Home() {
   const { data } = useCollaction("recepies");
+  console.log(data);
+  const { user } = useGlobalContext();
 
   return (
-    <div className="w-full max-w-[850px]">
-      {data &&
-        data.map((d) => {
-          return (
-            <div key={d.id} className="flex flex-col gap-6">
-              <div className="img-grid">
-                 <img
-                src="https://eda.yandex.ru/images/3454897/7c7a468dd159752c0675344e4701b067-684x520.jpeg"
-                alt="dimlama img"
-                width={400}
-                className="dimlama"
-              />
+    <div className="w-full max-w-[850px] flex  flex-col gap-7 ">
+      <h1
+        style={{ wordSpacing: "5px" }}
+        className="text-center text-2xl font-medium"
+      >
+        Salom, {user.displayName}{" "}
+        <span className="text-red-600 font-extrabold">COOKING TIME</span> veb
+        sahifasiga xush kelibsiz (❁´◡`❁)
+      </h1>
+      <p className="text-center">
+        Bu platforma oshxonadagi ijodkorlik va ta’bni bir joyga jamlaydi. Har
+        bir retsept – bu faqatgina taom emas, balki bir hikoya, bir hissiyot va
+        albatta – bir lazzat sarguzashti.
+      </p>
+      <div className="">
+        <h4>🍽️ Cooking Time imkoniyatlari:</h4>
+        <ul className="list-disc pl-10">
+          <li>O‘z retseptlaringizni qo‘shishingiz,</li>
+          <li>Boshqalar bilan tajriba almashishingiz,</li>
+          <li>
+            Va har kuni yangi, mazali retseptlar kashf qilishingiz mumkin.
+          </li>
+        </ul>
+      </div>
 
-              <img src="https://yukber.uz/image/cache/catalog/813b9e741a4908e21b29fad4f5853975-600x600.jpeg" width={170} alt="" />
-              <img src="https://exportal.io/files/images/items/0/308v2f3927c6.jpg" width={170} alt="" />
-              <img src="https://yukber.uz/image/cache/catalog/product/YK14/b40daad4a08a3015fd264db22eacd6be-600x600.jpg" width={170} alt="" />
-              <img src="https://lh3.googleusercontent.com/proxy/b-7VV56A8PIsszCPNfduH2eKTwf1Qyb73qdV2N7uvsCBepEyUYwjky2fkE_wY7GN899XTgheyP0HAUky2cyEPpQ3DtUMHJU-bfY8bPz__pVUmMWxPJtaopp3SsvMG37D6qvzUE0dqg266Yo" width={170} alt="" />
-              </div>
-             
-              <div className="flex flex-col gap-3 bg-gray-100 p-4 rounded-2xl">
-                <h1 className="text-4xl font-bold text-center">{d.title}</h1>
-                <p className="">{d.Description}</p>
-              </div>
-
-              <h2>{}</h2>
-            </div>
-          );
-        })}
+      <div className="flex gap-6 justify-center items-center flex-col">
+        <h4 className="font-medium text-[16px]">
+          Sahifamiz shunchaki ovqat tayyorlash uchun emas – bu joy yurakdan
+          pishirish uchun!
+        </h4>
+        <h4 className="font-bold text-xl text-center">
+          🍲 Hayotingizni lazzat bilan to‘ldiring. Birinchi qadamni bugun
+          tashlang!
+        </h4>
+      </div>
     </div>
   );
 }
